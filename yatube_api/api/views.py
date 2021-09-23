@@ -3,9 +3,8 @@ from django.contrib.auth import get_user_model
 
 from rest_framework import viewsets, permissions, filters, mixins
 from rest_framework.pagination import LimitOffsetPagination
-from rest_framework.exceptions import ValidationError
 
-from posts.models import Group, Post, Follow
+from posts.models import Group, Post
 
 from .serializers import (GroupSerializer, PostSerializer, CommentSerializer,
                           FollowSerializer)
@@ -67,11 +66,4 @@ class FollowViewSet(ListCreateViewSet):
         return user.follower.all()
 
     def perform_create(self, serializer):
-        following_username = serializer.initial_data.get('following')
-        following_user = get_object_or_404(User, username=following_username)
-        if following_user == self.request.user or Follow.objects.filter(
-                user=self.request.user, following=following_user).exists():
-            raise ValidationError(
-                'Подписываться на себя или повторно подписываться нельзя!')
-        serializer.save(user=self.request.user,
-                        following=following_user)
+        serializer.save(user=self.request.user)
