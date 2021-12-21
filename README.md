@@ -5,14 +5,18 @@ API веб приложений, базируемых на фреймворке 
 
 ### Установка и запуск проекта:
 
-Клонировать репозиторий и перейти в него в командной строке:
+Клонировать репозиторий и перейти в него в командной строке (используем ssh):
 
 ```
-git clone https://github.com/trdMichaelM/api_final_yatube.git
+git clone git@github.com:trdMichaelM/api_yatube.git
 ```
 
 ```
-cd api_final_yatube
+cd api_yatube
+```
+
+```
+Файл .env.example переименовываем в .env и прописываем в нем SECRET_KEY
 ```
 
 Cоздать и активировать виртуальное окружение:
@@ -36,10 +40,10 @@ python3 -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-Дополнительно установить модули Djoser и Simple JWT:
+Дополнительно установить модули Djoser и Simple JWT и dotenv:
 
 ```
-pip install djoser djangorestframework_simplejwt 
+pip install djoser djangorestframework_simplejwt python-dotenv
 ```
 
 Выполнить миграции:
@@ -71,3 +75,9 @@ POST http://127.0.0.1:8000/api/v1/follow/
 
 Более дитальное описание и примеры работы API проекта представлены в 
 документации: http://127.0.0.1:8000/api/v1/follow/ в формате ReDoc.
+
+### Используется:
+
+```
+Python 3.9 Django 2.2 Djoser
+```
